@@ -12,7 +12,7 @@ It only works on Mac OS X
 Why?
 If you're running Windows, use CoolPlay which is much better.
 
-PyPlay uses the OS X **afplay** (audio file play) command, so if you're on Linux, you'll need to edit the code to use VLC, MPD or some other audio player. Using **afplay**, however, means it can play any audio file your Mac can play.
+PyPlay uses the OS X **afplay** (audio file play) command, so if you're on Linux, you'll need to edit the code to use VLC, MPD or some other audio player. Using **afplay**, however, means it can play **any** format of audio file your Mac can play: MP3s, WAVs, AIFFs, M4As etc.
 
 It's written in Python 2 - this is because Macs have Python 2 installed by default, and I want this to work without anyone having to install any extra software like Python 3 or a launcher.
 
