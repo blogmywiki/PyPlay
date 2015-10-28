@@ -3,6 +3,8 @@ A Python radio/theatre audio player for Macs by Giles Booth / @blogmywiki
 
 PyPlay is designed to play audio files off a Mac one at a time, and tell you at what clock time it will finish playing. This is useful if you're working in radio or theatre and want to play sound files singly, waiting for a the operator to play in the next file manually on cue. It's inspired by the Windows application CoolPlay.
 
+It is a really simple, but not-entirely-trvial, program that I made whilst teaching myself Python.
+
 See http://www.suppertime.co.uk/blogmywiki/2015/04/coolplaymac/ for more information on CoolPlay and how to run it on a Mac.
 
 It only works on Mac OS X
@@ -16,7 +18,7 @@ It's written in Python 2 - this is because Macs have Python 2 installed by defau
 
 How to use it
 -------------
-Put the PyPlay script in the same folder as your audio files. You also need to have an M3U playlist file called playlist.m3u in the same folder - this is a standard playlist format used by lots of software. It's just a text file that starts #EXTM3U and then has a list of file names like this:
+Put the PyPlay script pyplay.py in the same folder as your audio files. You also need to have an M3U playlist file called playlist.m3u in the same folder - this is a standard playlist format used by lots of software like iTunes, VLC and indeed CoolPlay. It's just a text file that starts #EXTM3U and then has a list of file names like this:
 
     #EXTM3U
 
