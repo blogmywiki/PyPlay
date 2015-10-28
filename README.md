@@ -27,7 +27,7 @@ Put the PyPlay script pyplay.py in the same folder as your audio files. You also
     Firework.mp3
     Typing.mp3
 
-You need to run PyPlay from the OS X Terminal by navigating to the directory where it and your audio files are. If you can't work out the path to the folder, find the folder in the Mac Finder, type `cd ` (space after cd) in the Terminal and drag the folder into the Terminal window, then press enter. Then type `python pyplay` to run it.
+You need to run PyPlay from the OS X Terminal by navigating to the directory where it and your audio files are. If you can't work out the path to the folder, find the folder in the Mac Finder, type `cd ` (space after cd) in the Terminal and drag the folder into the Terminal window, then press enter. Then type `python pyplay.py` to run it.
 
 ![PyPlay window](http://www.suppertime.co.uk/pyplay/pyplay.png)
 
