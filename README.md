@@ -23,9 +23,9 @@ Put the PyPlay script in the same folder as your audio files. You also need to h
     Firework.mp3
     Typing.mp3
 
-You need to run PyPlay from the OS X Terminal by navigating to the directory where it and your audio files are. If you can't work out the path to the folder, find the folder in the finder, type 'cd ' in the Terminal and drag the folder into the Terminal window. Then type
-    python pyplay
-to run it.
+You need to run PyPlay from the OS X Terminal by navigating to the directory where it and your audio files are. If you can't work out the path to the folder, find the folder in the finder, type `cd ` in the Terminal and drag the folder into the Terminal window. Then type `python pyplay` to run it.
+
+The program runs in a little terminal window. You enter a number to pick the track you want to play, it plays it and displays the 'out time' - the time when it will end. It will probably play long files but the display won't cope very will with audio files longer than an hour and the out times may be wrong.
 
 To do list
 ----------
