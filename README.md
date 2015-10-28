@@ -7,10 +7,9 @@ It is a really simple, but not-entirely-trvial, program that I made whilst teach
 
 See http://www.suppertime.co.uk/blogmywiki/2015/04/coolplaymac/ for more information on CoolPlay and how to run it on a Mac.
 
-It only works on Mac OS X
--------------------------
-Why?
-If you're running Windows, use CoolPlay which is much better.
+It only works on Mac OS X - why?
+--------------------------------
+If you're running Windows, use CoolPlay which is like, way better.
 
 PyPlay uses the OS X **afplay** (audio file play) command, so if you're on Linux, you'll need to edit the code to use VLC, MPD or some other audio player. Using **afplay**, however, means it can play **any** format of audio file your Mac can play: MP3s, WAVs, AIFFs, M4As etc.
 
@@ -28,17 +27,20 @@ Put the PyPlay script pyplay.py in the same folder as your audio files. You also
     Firework.mp3
     Typing.mp3
 
-You need to run PyPlay from the OS X Terminal by navigating to the directory where it and your audio files are. If you can't work out the path to the folder, find the folder in the finder, type `cd ` in the Terminal and drag the folder into the Terminal window. Then type `python pyplay` to run it.
+You need to run PyPlay from the OS X Terminal by navigating to the directory where it and your audio files are. If you can't work out the path to the folder, find the folder in the Mac Finder, type `cd ` (space after cd) in the Terminal and drag the folder into the Terminal window, then press enter. Then type `python pyplay` to run it.
 
 ![PyPlay window](http://www.suppertime.co.uk/pyplay/pyplay.png)
 
-The program runs in a little terminal window. You enter a number to pick the track you want to play, it plays it and displays the 'out time' - the time when it will end. It will probably play long files but the display won't cope very well with audio files longer than an hour and the out times may be wrong.
+The program runs in a little terminal window. You enter a number to pick the track you want to play, it plays it and displays the 'out time' - the clock time when it will finish playing.
+
+It will probably play long files but the display won't cope very well with audio files longer than an hour and the out times may be wrong.
 
 You can break out of playing a track by pressing ctrl-c, and close PyPlay by typing 'q' instead of a track number.
 
 To do list
 ----------
 - Have PyPlay make a playlist file from all the audio files in the directory if one isn't already there.
+- Handle long audio files in display better.
 - Have a much more CoolPlay-like interface where you scroll up and down a list to select which track plays next, possibly just by pressing the space bar.
 - Some clever threading to show elapsed / remaining time of playing track and have on-screen clock update.
 - Make it work with relative or absolute file paths outside its directory. (May already work, I haven't tried it)
