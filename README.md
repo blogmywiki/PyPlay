@@ -41,7 +41,7 @@ To do list
 - Have PyPlay make a playlist file from all the audio files in the directory if one isn't already there.
 - Have a much more CoolPlay-like interface where you scroll up and down a list to select which track plays next, possibly just by pressing the space bar.
 - Some clever threading to show elapsed / remaining time of playing track and have on-screen clock update.
-- Make it work with relative file paths.
+- Make it work with relative or absolute file paths outside its directory. (May already work, I haven't tried it)
 - Allow editing of playlists.
 - Package it up so you drop it in the folder and run it from the Finder.
 - GUI. Yeah, right.
