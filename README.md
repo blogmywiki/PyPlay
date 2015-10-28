@@ -32,16 +32,16 @@ You need to run PyPlay from the OS X Terminal by navigating to the directory whe
 
 ![PyPlay window](http://www.suppertime.co.uk/pyplay/pyplay.png)
 
-The program runs in a little terminal window. You enter a number to pick the track you want to play, it plays it and displays the 'out time' - the time when it will end. It will probably play long files but the display won't cope very will with audio files longer than an hour and the out times may be wrong.
+The program runs in a little terminal window. You enter a number to pick the track you want to play, it plays it and displays the 'out time' - the time when it will end. It will probably play long files but the display won't cope very well with audio files longer than an hour and the out times may be wrong.
 
 You can break out of playing a track by pressing ctrl-c, and close PyPlay by typing 'q' instead of a track number.
 
 To do list
 ----------
 - Have PyPlay make a playlist file from all the audio files in the directory if one isn't already there.
-- Have a much more CoolPlay-like interface where you scroll up and down a list to select which track plays next.
+- Have a much more CoolPlay-like interface where you scroll up and down a list to select which track plays next, possibly just by pressing the space bar.
 - Some clever threading to show elapsed / remaining time of playing track and have on-screen clock update.
 - Make it work with relative file paths.
 - Allow editing of playlists.
-- Package it up so you drop it in the folder and run it from the 
+- Package it up so you drop it in the folder and run it from the Finder.
 - GUI. Yeah, right.
