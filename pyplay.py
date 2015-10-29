@@ -3,7 +3,12 @@
 # only works in OS X as uses afplay to play audio files
 # requires an M3U playlist file called playlist.m3u and audio files in same directory
 
+# version 3 fixes bug playing files with spaces in file names
+# makes an M3U file from audio files in directory if no playlist.m3u file found
+# also fixes a bug with out time when crossing hour
+
 import os
+import os.path
 import time
 import subprocess
 import re
@@ -20,9 +25,9 @@ def showTracks():
     os.system('clear')
     t = str(datetime.datetime.now().time())
     t = t[0:8]
-    print '\033[37;44mWelcome to PyPlay!\t\t\t',t,'\033[0m'
+    print '\033[37;44mWelcome to PyPlay!        \t\t\t',t,'\033[0m'
     print ""
-    print '\033[0;30;47m# Track                 Length  Status  Out time \033[0m'
+    print '\033[0;30;47m# Track                         Length  Status  Out time \033[0m'
     for z in range(len(trackList)):
         highlightOn = ""
         highlightOff = ""
@@ -66,6 +71,9 @@ def getEndTime(tk):
     if endSec > 59:
         endMin += 1
         endSec = endSec % 60
+    if endMin > 59:
+        endHour += 1
+        endMin = endMin % 60
     endHourString = leadingZero(str(endHour))
     endMinString = leadingZero(str(endMin))
     endSecString = leadingZero(str(endSec))
@@ -92,8 +100,6 @@ def displayDuration(s):
     sec = disTime % 60
     m = (disTime - sec)/60
     secString = leadingZero(str(sec))
-    # if len(secString) == 1:
-    #    secString = '0' + secString
     t = str(m) + ":" + secString
     return t
 
@@ -109,6 +115,27 @@ def playTrack(track):
     trackString = "afplay " + song
     os.system(trackString)
 
+# if no playlist.m3u file found, make one from audio files found in directory
+# edit audioFileTypes list to add more file types as needed
+if not os.path.exists('playlist.m3u'):
+    audioFileTypes = ['.mp3','.MP3','.wav','.WAV','.m4a','.M4A','.aiff','.AIFF','aif','AIF']
+    os.system('clear')
+    print "No playlist.m3u file found so making you one with these files:"
+    print
+    dirList = os.listdir(".")
+    newDir = []
+    for x in range(len(dirList)):
+        for q in audioFileTypes:
+            if q in dirList[x]:
+                newDir.append(dirList[x])
+    fo = open("playlist.m3u", "w")
+    fo.write("#EXTM3U\n\n")
+    for item in newDir:
+        print item
+        fo.write("%s\n" % item)
+    fo.close()
+    time.sleep(3)
+
 #open the playlist file and read its contents into a list
 playlist = open('playlist.m3u')
 trackArray = playlist.readlines()
@@ -118,6 +145,9 @@ trackArray = playlist.readlines()
 for i in range(len(trackArray)-1,-1,-1):
     if trackArray[i].startswith('\n') or trackArray[i].startswith('#'):
         trackArray.pop(i)
+    if ' ' in trackArray[i]:
+        gloop = trackArray[i].replace(" ","\ ")   # escape spaces in filenames
+        trackArray[i] = gloop
     temp = trackArray[i].strip()
     trackArray[i] = temp
 
@@ -125,8 +155,14 @@ for i in range(len(trackArray)-1,-1,-1):
 # filename - display name - duration as float - display duration - track status
 trackList = []
 for a in range(len(trackArray)):
-    trackList.append([trackArray[a],colform(trackArray[a],15),getTrackLength(a),displayDuration(getTrackLength(a)),"status"])
+    if '\ ' in trackArray[a]:
+        newName = trackArray[a].replace("\ "," ")   # strip escaped spaces out of display name
+    else:
+        newName = trackArray[a]
+    trackList.append([trackArray[a],colform(newName,20),getTrackLength(a),displayDuration(getTrackLength(a)),"status"])
 
+
+# the main program loop
 while True:
     clearStatus()
     showTracks()
