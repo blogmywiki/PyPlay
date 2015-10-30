@@ -1,11 +1,15 @@
+#!/usr/local/bin/python
+
 # PyPlay radio playout script by Giles Booth @blogmwiki
 # written in Python2 to run on MacOS X without installing Python3
 # only works in OS X as uses afplay to play audio files
-# requires an M3U playlist file called playlist.m3u and audio files in same directory
+# requires audio files in same directory as this script
 
-# version 3 fixes bug playing files with spaces in file names
+# Version 4 fixes bugs replacing escaped spaces in display names and
+# copes with filenames with apostrophes.
+# Version 3 fixes bug playing files with spaces in file names
 # makes an M3U file from audio files in directory if no playlist.m3u file found
-# also fixes a bug with out time when crossing hour
+# also fixes a bug with out time when crossing hour.
 
 import os
 import os.path
@@ -35,7 +39,7 @@ def showTracks():
             highlightOn = "\033[31;103m"
             highlightOff = "\033[0m"
         print highlightOn, z+1, trackList[z][1], "\t", trackList[z][3], "\t", trackList[z][4], highlightOff
-    print 'Press ctrl+c to stop playing, q to quit'
+    print '\033[0,34mPress ctrl+c to stop playing, q to quit\033[0m'
 
 # returns a float with duration of track in seconds
 def getTrackLength(thing):
@@ -148,6 +152,9 @@ for i in range(len(trackArray)-1,-1,-1):
     if ' ' in trackArray[i]:
         gloop = trackArray[i].replace(" ","\ ")   # escape spaces in filenames
         trackArray[i] = gloop
+    if "\'" in trackArray[i]:
+        floop = trackArray[i].replace("\'","\\'") # escape apostrophes in filename
+        trackArray[i] = floop
     temp = trackArray[i].strip()
     trackArray[i] = temp
 
@@ -155,12 +162,12 @@ for i in range(len(trackArray)-1,-1,-1):
 # filename - display name - duration as float - display duration - track status
 trackList = []
 for a in range(len(trackArray)):
-    if '\ ' in trackArray[a]:
-        newName = trackArray[a].replace("\ "," ")   # strip escaped spaces out of display name
-    else:
-        newName = trackArray[a]
+    rep = {"\ ": " ", "\\'": "\'"} # define desired replacements here
+    # use these three lines to do the replacement
+    rep = dict((re.escape(k), v) for k, v in rep.iteritems())
+    pattern = re.compile("|".join(rep.keys()))
+    newName = pattern.sub(lambda m: rep[re.escape(m.group(0))], trackArray[a])
     trackList.append([trackArray[a],colform(newName,20),getTrackLength(a),displayDuration(getTrackLength(a)),"status"])
-
 
 # the main program loop
 while True:
