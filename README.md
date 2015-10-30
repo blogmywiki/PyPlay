@@ -17,7 +17,7 @@ It's written in Python 2 - this is because Macs have Python 2 installed by defau
 
 How to use it
 -------------
-Put the PyPlay script pyplay.py in the same folder as your audio files. It uses an M3U playlist file called playlist.m3u in the same folder - this is a standard playlist format used by lots of software like iTunes, VLC and indeed CoolPlay. It's just a text file that starts #EXTM3U and then has a list of file names like this:
+Put the PyPlay script **pyplay.py** in the same folder as your audio files. It uses an M3U playlist file called playlist.m3u in the same folder - this is a standard playlist format used by lots of software like iTunes, VLC and indeed CoolPlay. It's just a text file that starts #EXTM3U and then has a list of file names like this:
 
     #EXTM3U
 
@@ -39,10 +39,16 @@ It will probably play long files but the display won't cope very well with audio
 
 You can break out of playing a track by pressing ctrl-c, and close PyPlay by typing 'q' instead of a track number.
 
+Bug list
+--------
+- Bug replacing multiple spaces in filenames fixed in version 4
+- Bug handling apostrophes in filenames fixed in version 4
+
 To do list
 ----------
 - ~~Have PyPlay make a playlist file from all the audio files in the directory if one isn't already there.~~
 - Handle long audio files in display better.
+- Error handling if no audio files found.
 - Have a much more CoolPlay-like interface where you scroll up and down a list to select which track plays next, possibly just by pressing the space bar.
 - Have a 'cartwall' mode where you press a key and it plays a file immediately.
 - Some clever threading to show elapsed / remaining time of playing track and have on-screen clock update.
