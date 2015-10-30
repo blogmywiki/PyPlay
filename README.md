@@ -39,8 +39,8 @@ It will probably play long files but the display won't cope very well with audio
 
 You can break out of playing a track by pressing ctrl-c, and close PyPlay by typing 'q' instead of a track number.
 
-Bug list
---------
+Changes
+-------
 - Bug replacing multiple spaces in filenames fixed in version 4
 - Bug handling apostrophes in filenames fixed in version 4
 
