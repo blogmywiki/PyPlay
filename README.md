@@ -47,8 +47,10 @@ Changes
 To do list
 ----------
 - ~~Have PyPlay make a playlist file from all the audio files in the directory if one isn't already there.~~
+- Recode to avoid horrible kludge that copes with multiple spaces in filenames.
+- Recode user interface using curses and keypresses.
 - Handle long audio files in display better.
-- Error handling if no audio files found.
+- Error handling if audio file not found.
 - Have a much more CoolPlay-like interface where you scroll up and down a list to select which track plays next, possibly just by pressing the space bar.
 - Have a 'cartwall' mode where you press a key and it plays a file immediately.
 - Some clever threading to show elapsed / remaining time of playing track and have on-screen clock update.
