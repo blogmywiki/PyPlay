@@ -161,7 +161,7 @@ for i in range(len(trackArray)-1,-1,-1):
 
 # horrible kludge to strip out multiple backslashes
 for i in range(len(trackArray)-1,-1,-1):
-    repl = {"\\\\\\ ": "\\ "} # define desired replacements here
+    repl = {"\\\\\\": "\\"} # define desired replacements here
     # use these three lines to do the replacement
     repl = dict((re.escape(k), v) for k, v in repl.iteritems())
     pattern = re.compile("|".join(repl.keys()))
