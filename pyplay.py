@@ -5,6 +5,7 @@
 # only works in OS X as uses afplay to play audio files
 # requires audio files in same directory as this script
 
+# V 4.1 has horrible kludge to cope with multiple backslashes in array
 # Version 4 fixes bugs replacing escaped spaces in display names and
 # copes with filenames with apostrophes.
 # Version 3 fixes bug playing files with spaces in file names
@@ -149,14 +150,23 @@ trackArray = playlist.readlines()
 for i in range(len(trackArray)-1,-1,-1):
     if trackArray[i].startswith('\n') or trackArray[i].startswith('#'):
         trackArray.pop(i)
-    if ' ' in trackArray[i]:
-        gloop = trackArray[i].replace(" ","\ ")   # escape spaces in filenames
-        trackArray[i] = gloop
-    if "\'" in trackArray[i]:
-        floop = trackArray[i].replace("\'","\\'") # escape apostrophes in filename
-        trackArray[i] = floop
+    repl = {" ": "\ ", "\'": "\\'"} # define desired replacements here
+    # use these three lines to do the replacement
+    repl = dict((re.escape(k), v) for k, v in repl.iteritems())
+    pattern = re.compile("|".join(repl.keys()))
+    newArrayName = pattern.sub(lambda m: repl[re.escape(m.group(0))], trackArray[i])
+    trackArray[i] = newArrayName
     temp = trackArray[i].strip()
     trackArray[i] = temp
+
+# horrible kludge to strip out multiple backslashes
+for i in range(len(trackArray)-1,-1,-1):
+    repl = {"\\\\\\ ": "\\ "} # define desired replacements here
+    # use these three lines to do the replacement
+    repl = dict((re.escape(k), v) for k, v in repl.iteritems())
+    pattern = re.compile("|".join(repl.keys()))
+    newArrayName = pattern.sub(lambda m: repl[re.escape(m.group(0))], trackArray[i])
+    trackArray[i] = newArrayName
 
 # read tracks into array to hold track info in format:
 # filename - display name - duration as float - display duration - track status
